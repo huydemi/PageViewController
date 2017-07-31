@@ -13,17 +13,43 @@ protocol HangoutCreationPage {
   func notifyUI()
 }
 
+protocol TutorialPageViewControllerDelegate: class {
+  
+  /**
+   Called when the number of pages is updated.
+   
+   - parameter tutorialPageViewController: the TutorialPageViewController instance
+   - parameter count: the total number of pages.
+   */
+  func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
+                                  didUpdatePageCount count: Int)
+  
+  /**
+   Called when the current index is updated.
+   
+   - parameter tutorialPageViewController: the TutorialPageViewController instance
+   - parameter index: the index of the currently visible page.
+   */
+  func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
+                                  didUpdatePageIndex index: Int)
+  
+}
+
 class TutorialPageViewController: UIPageViewController {
   private(set) lazy var orderedViewControllers: [UIViewController] = {
     return [self.newColoredViewController("1"),
             self.newColoredViewController("2"),
             self.newColoredViewController("3")]
   }()
-
+  
+  weak var tutorialDelegate: TutorialPageViewControllerDelegate?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     dataSource = self
+    delegate = self
+    
     // set background color to white
     self.view.backgroundColor = UIColor.white
     
@@ -33,6 +59,8 @@ class TutorialPageViewController: UIPageViewController {
                          animated: true,
                          completion: nil)
     }
+    
+    tutorialDelegate?.tutorialPageViewController(self, didUpdatePageCount: orderedViewControllers.count)
   }
   
   override func didReceiveMemoryWarning() {
@@ -96,17 +124,18 @@ extension TutorialPageViewController: UIPageViewControllerDataSource {
     return orderedViewControllers[nextIndex]
   }
   
-  func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-    return orderedViewControllers.count
-  }
+}
+
+extension TutorialPageViewController: UIPageViewControllerDelegate {
   
-  func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-    guard let firstViewController = viewControllers?.first,
-      let firstViewControllerIndex = orderedViewControllers.index(of: firstViewController) else {
-        return 0
+  func pageViewController(_ pageViewController: UIPageViewController,
+                          didFinishAnimating finished: Bool,
+                          previousViewControllers: [UIViewController],
+                          transitionCompleted completed: Bool) {
+    if let firstViewController = viewControllers?.first,
+      let index = orderedViewControllers.index(of: firstViewController) {
+      tutorialDelegate?.tutorialPageViewController(self, didUpdatePageIndex: index)
     }
-    
-    return firstViewControllerIndex
   }
   
 }

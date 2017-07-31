@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YZW-aM-ecX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MD0-bJ-bZJ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -16,6 +16,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Li-I0-dpg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="62" y="-54"/>
+        </scene>
+        <!--Tutorial View Controller-->
+        <scene sceneID="Kvv-gD-8UB">
+            <objects>
+                <viewController id="MD0-bJ-bZJ" customClass="TutorialViewController" customModule="PageViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YAb-8o-CVK"/>
+                        <viewControllerLayoutGuide type="bottom" id="upa-xh-4J2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VUs-wa-qmJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WMs-jN-mOG">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <segue destination="YZW-aM-ecX" kind="embed" id="GwS-Zx-9If"/>
+                                </connections>
+                            </containerView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="EjJ-Bp-5FO">
+                                <rect key="frame" x="168" y="40" width="39" height="37"/>
+                                <color key="pageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EjJ-Bp-5FO" firstAttribute="top" secondItem="YAb-8o-CVK" secondAttribute="bottom" constant="20" id="DAm-NZ-4V4"/>
+                            <constraint firstItem="WMs-jN-mOG" firstAttribute="leading" secondItem="VUs-wa-qmJ" secondAttribute="leading" id="KhJ-Tg-Ghb"/>
+                            <constraint firstItem="EjJ-Bp-5FO" firstAttribute="centerX" secondItem="WMs-jN-mOG" secondAttribute="centerX" id="d5C-T9-fQ1"/>
+                            <constraint firstItem="WMs-jN-mOG" firstAttribute="top" secondItem="VUs-wa-qmJ" secondAttribute="top" id="fYj-ea-5tl"/>
+                            <constraint firstAttribute="trailing" secondItem="WMs-jN-mOG" secondAttribute="trailing" id="hs8-rs-H2S"/>
+                            <constraint firstItem="upa-xh-4J2" firstAttribute="top" secondItem="WMs-jN-mOG" secondAttribute="bottom" id="ilq-6I-yw0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="containerView" destination="WMs-jN-mOG" id="vBw-lO-CLg"/>
+                        <outlet property="pageControl" destination="EjJ-Bp-5FO" id="abP-Ff-ebd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5S-vl-8EU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="62" y="-768"/>
         </scene>
         <!--Page1VC-->
         <scene sceneID="vtf-ki-5ec">
@@ -45,7 +88,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iHo-xc-L0f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-342" y="678"/>
+            <point key="canvasLocation" x="-615" y="668"/>
         </scene>
         <!--Page2VC-->
         <scene sceneID="Ukn-3D-FKd">
@@ -75,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8J4-X7-Cfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="321" y="678"/>
+            <point key="canvasLocation" x="82" y="668"/>
         </scene>
         <!--Page3VC-->
         <scene sceneID="8Y5-uc-M14">
@@ -105,7 +148,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gan-RB-V2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="716" y="671"/>
+            <point key="canvasLocation" x="810" y="668"/>
         </scene>
     </scenes>
 </document>
