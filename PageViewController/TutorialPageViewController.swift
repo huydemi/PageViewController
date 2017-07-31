@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol HangoutCreationPage {
+  var isFilled: Bool { get }
+}
+
 class TutorialPageViewController: UIPageViewController {
   private(set) lazy var orderedViewControllers: [UIViewController] = {
     return [self.newColoredViewController("1"),
@@ -19,6 +23,7 @@ class TutorialPageViewController: UIPageViewController {
     super.viewDidLoad()
     
     dataSource = self
+    // set background color to white
     self.view.backgroundColor = UIColor.white
     
     if let firstViewController = orderedViewControllers.first {
@@ -77,6 +82,11 @@ extension TutorialPageViewController: UIPageViewControllerDataSource {
     
     guard orderedViewControllersCount > nextIndex else {
       return nil
+    }
+    
+    // check is it OK to move to next page
+    if let nextVC = orderedViewControllers[nextIndex] as? HangoutCreationPage {
+      return (nextVC.isFilled ? orderedViewControllers[nextIndex] : nil)
     }
     
     return orderedViewControllers[nextIndex]
