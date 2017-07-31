@@ -10,6 +10,7 @@ import UIKit
 
 protocol HangoutCreationPage {
   var isFilled: Bool { get }
+  func notifyUI()
 }
 
 class TutorialPageViewController: UIPageViewController {
@@ -73,6 +74,14 @@ extension TutorialPageViewController: UIPageViewControllerDataSource {
       return nil
     }
     
+    // check is it OK to move to next page
+    if let currentVC = orderedViewControllers[viewControllerIndex] as? HangoutCreationPage {
+      if currentVC.isFilled == false {
+        currentVC.notifyUI()
+        return nil
+      }
+    }
+    
     let nextIndex = viewControllerIndex + 1
     let orderedViewControllersCount = orderedViewControllers.count
     
@@ -82,11 +91,6 @@ extension TutorialPageViewController: UIPageViewControllerDataSource {
     
     guard orderedViewControllersCount > nextIndex else {
       return nil
-    }
-    
-    // check is it OK to move to next page
-    if let nextVC = orderedViewControllers[nextIndex] as? HangoutCreationPage {
-      return (nextVC.isFilled ? orderedViewControllers[nextIndex] : nil)
     }
     
     return orderedViewControllers[nextIndex]

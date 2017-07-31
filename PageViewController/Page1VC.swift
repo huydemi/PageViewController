@@ -12,6 +12,10 @@ class Page1VC: UIViewController {
 }
 
 extension Page1VC: HangoutCreationPage {
+  internal func notifyUI() {
+    view.backgroundColor = UIColor.red
+  }
+
   var isFilled: Bool {
     get {
       return true
