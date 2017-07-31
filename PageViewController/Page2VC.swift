@@ -18,7 +18,7 @@ extension Page2VC: HangoutCreationPage {
   
   var isFilled: Bool {
     get {
-      return true
+      return false
     }
   }
 }
